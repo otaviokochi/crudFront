@@ -4,7 +4,7 @@ import CreateForm from '../../components/CreateForm'
 
 const CreateClient = () => {
   return (
-    <CreateForm />
+    <CreateForm name="Criar Cliente" />
   )
 }
 

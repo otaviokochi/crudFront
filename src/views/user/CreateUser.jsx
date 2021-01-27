@@ -1,8 +1,9 @@
 import React from 'react'
+import CreateForm from '../../components/CreateForm';
 
 const CreateUser = () => {
   return (
-    <h1>Create</h1>
+    <CreateForm name="Criar Usuário"/>
   )
 }
 

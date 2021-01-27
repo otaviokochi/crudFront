@@ -1,8 +1,9 @@
 import React from 'react'
+import UpdatePerson from '../../components/UpdatePerson'
 
 const UpdateUser = () => {
   return (
-    <h1>update</h1>
+    <UpdatePerson name="Atualizar Usuário" />
   )
 }
 

@@ -2,18 +2,16 @@ import { Layout } from 'antd'
 import React from 'react'
 import { Route, Switch } from "react-router-dom";
 
-import UpdateUser from '../views/user/UpdateUser'
-import DeleteUser from '../views/user/DeleteUser'
-import SearchUser from '../views/user/SearchUser' 
-import CreateUser from '../views/user/CreateUser'
+import UpdateUser from '../../views/user/UpdateUser'
+import DeleteUser from '../../views/user/DeleteUser'
+import SearchUser from '../../views/user/SearchUser' 
+import CreateUser from '../../views/user/CreateUser'
 
-import UpdateClient from '../views/client/UpdateClient'
-import DeleteClient from '../views/client/DeleteClient'
-import SearchClient from '../views/client/SearchClient' 
-import CreateClient from '../views/client/CreateClient'
+import UpdateClient from '../../views/client/UpdateClient'
+import DeleteClient from '../../views/client/DeleteClient'
+import SearchClient from '../../views/client/SearchClient' 
+import CreateClient from '../../views/client/CreateClient'
 
-
-import './Content.css'
 
 const Content = () => {
   const { Content } = Layout 

@@ -1,16 +1,23 @@
 import React from 'react'
-
+import store, {logoffUser} from '../../redux/auth'
 import { Menu, Row, Col, Button, Dropdown, Tooltip } from 'antd'
 import { LogoutOutlined, UserOutlined} from '@ant-design/icons';
+import { useHistory } from 'react-router-dom';
 
 
 const MenuHeader = () => {
+  const history = useHistory();
+
   const logOut = () => {
-    console.log('logout');
+    store.dispatch(logoffUser());
+    history.push('/login');
   }
+
+  const { loggedIn } = store.getState();
+
   
   const menu = (
-    <Menu onClick={logOut} mode="horizontal">
+    <Menu onClick={logOut}>
       <Menu.Item style={{ borderRadius: '24px', textAlign: 'center' }} key="logout">
         <LogoutOutlined /> Sair
       </Menu.Item>
@@ -30,7 +37,7 @@ const MenuHeader = () => {
               shape='round'
               size='large'
               onClick={e => e.preventDefault()}>
-                Sair
+                {loggedIn}
             </Button>
           </Tooltip>
         </Dropdown>
