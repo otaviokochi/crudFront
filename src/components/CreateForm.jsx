@@ -20,14 +20,14 @@ const CreateForm = props => {
   };
 
   const onFinish = (values) => {
-    create(values).then(response => {
-      if(response){
-        setCreatedSuccessfully(true);
-      } else {
-        setCreatedSuccessfully(false);
-      }
+    create(values).then(() => {
+      setCreatedSuccessfully(true);
       setFisrtRender(false);
       form.resetFields();
+    })
+    .catch(err => {
+      console.log(err);
+      setCreatedSuccessfully(false);
     })
   }
 

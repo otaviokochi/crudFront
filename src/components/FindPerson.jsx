@@ -15,22 +15,22 @@ const FindPerson = (props) => {
 
   const handleSearchUser = async (value) => {
     if(value.name) {
-      await searchUserByName(value.name).then(response => setPersons(response));
+      await searchUserByName(value.name).then(response => setPersons(response.length > 0 ? response : undefined));
     } else if(value.id) {
-      await searchUserById(value.id).then(response => setPersons(response ? [response]: undefined));
+      await searchUserById(value.id).then(response => setPersons(response.length > 0 ? response : undefined));
     } else {
-      await searchAllUsers().then(response => setPersons(response));
+      await searchAllUsers().then(response => setPersons(response.length > 0 ? response : undefined));
     }
     setFirstRender(false);
   }
 
   const handleSearchClient = async (value) => {
     if(value.name) {
-      await searchClientByName(value.name).then(response => setPersons(response));
+      await searchClientByName(value.name).then(response => setPersons(response.length > 0 ? response : undefined));
     } else if(value.id) {
-      await searchClientById(value.id).then(response => setPersons(response ? [response]: undefined));
+      await searchClientById(value.id).then(response => setPersons(response.length > 0 ? response : undefined));
     } else {
-      await searchAllClients().then(response => setPersons(response));
+      await searchAllClients().then(response => setPersons(response.length > 0 ? response : undefined));
     }
     setFirstRender(false);
   }

@@ -37,25 +37,27 @@ const UpdatePerson = (props) => {
   }
 
   const onFinishUser = (values) => {
-    updateUser(idPerson, values).then(response => {
-      if(response){
+    updateUser(idPerson, values)
+      .then(response => {
         setPersonData(false);
-        setUpdatedSuccessfully(true);
-      } else {
-        setUpdatedSuccessfully(false);
-      }
-    })
+        setUpdatedSuccessfully(response.message);
+      })
+      .catch(err => {
+        console.log(err)
+        setUpdatedSuccessfully('Erro ao atualizar o usuário!');
+      })
   }
 
   const onFinishClient = (values) => {
-    updateClient(idPerson, values).then(response => {
-      if(response){
+    updateClient(idPerson, values)
+      .then(response => {
         setPersonData(false);
-        setUpdatedSuccessfully(true);
-      } else {
-        setUpdatedSuccessfully(false);
-      }
-    })
+        setUpdatedSuccessfully(response.message);
+      })
+      .catch(err => {
+        console.log(err)
+        setUpdatedSuccessfully('Erro ao atualizar o cliente!');
+      })
   }
   
   const { Search } = Input;
@@ -100,14 +102,9 @@ const UpdatePerson = (props) => {
           </Form.Item>
         </Form>
       }
-      { !personData && !firstRender && !updatedSuccessfully &&
+      { !personData && !firstRender &&
         <h2 style={{margin: '20px 0px'}}>
-          {isUser ? 'Usuário' : 'Cliente' } não encontrado
-        </h2>
-      }
-      { updatedSuccessfully &&
-        <h2 style={{margin: '20px 0px'}}>
-          {isUser ? 'Usuário' : 'Cliente' } alterado com sucesso!
+          {updatedSuccessfully}
         </h2>
       }
     </div>

@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const create = async (user) => {
+const create = async user => {
   if(user.login) {
     try{
       const url = 'http://localhost:5000/users'
@@ -14,10 +14,10 @@ const create = async (user) => {
         }
       })
         .then(response => response.data)
-        .catch(err => console.log(err))
+        .catch(err => err)
       return res;
     } catch (err) {
-      console.log(err);
+      return err;
     }
   } else {
     try {
@@ -32,10 +32,10 @@ const create = async (user) => {
         }
       })
         .then(response => response.data)
-        .catch(err => console.log(err))
+        .catch(err => err)
       return res;
     } catch (err) {
-      console.log(err)
+      return err
     }
   }
 }

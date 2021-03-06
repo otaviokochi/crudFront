@@ -10,10 +10,11 @@ export const searchUserByName = async (name) => {
       headers: {
         'Content-type': 'application/json'
       }
-    }).then(response => response.data);
+    }).then(response => response.data)
+      .catch(err => err);
     return res;
   } catch (err) {
-    console.log(err)
+    return err
   }
 }
 
@@ -25,10 +26,11 @@ export const searchUserById = async (id) => {
       headers: {
         'Content-type': 'application/json'
       }
-    }).then(response => response.data);
+    }).then(response => response.data)
+      .catch(err => err);
     return res;
   } catch (err) {
-    console.log(err)
+    return err;
   }
 }
 
@@ -40,10 +42,11 @@ export const searchAllUsers = async () => {
       headers: {
         'Content-type': 'application/json'
       }
-    }).then(response => response.data);
+    }).then(response => response.data)
+      .catch(err => err);
     return res;
   } catch (err) {
-    console.log(err)
+    return err
   }
 }
 
@@ -56,10 +59,11 @@ export const searchClientByName = async (name) => {
       headers: {
         'Content-type': 'application/json'
       }
-    }).then(response => response.data);
+    }).then(response => response.data)
+      .catch(err => err);
     return res;
   } catch (err) {
-    console.log(err)
+    return err
   }
 }
 
@@ -71,10 +75,11 @@ export const searchClientById = async (id) => {
       headers: {
         'Content-type': 'application/json'
       }
-    }).then(response => response.data);
+    }).then(response => response.data)
+      .catch(err => err);
     return res;
   } catch (err) {
-    console.log(err)
+    return err
   }
 }
 
@@ -86,9 +91,10 @@ export const searchAllClients = async () => {
       headers: {
         'Content-type': 'application/json'
       }
-    }).then(response => response.data);
+    }).then(response => response.data)
+      .catch(err => err);
     return res;
   } catch (err) {
-    console.log(err)
+    return err
   }
 }

@@ -12,14 +12,10 @@ const Login = () => {
   const onFinish = (values) => {
     loginRequest(values.username, values.password)
       .then(response => {
-        if(response) {
-          store.dispatch(loginUser(JSON.parse(response.config.data).username));
-          history.push("/");
-        } else {
-          setSuccesLogin(false);
-        }
+        store.dispatch(loginUser(JSON.parse(response.config.data).username));
+        history.push("/");
       })
-      .catch(err => console.log(err));
+      .catch(() => setSuccesLogin(false));
   } 
 
   
