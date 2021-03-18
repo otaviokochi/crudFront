@@ -10,9 +10,10 @@ const Login = () => {
   const [succesLogin, setSuccesLogin] = useState(true);
 
   const onFinish = (values) => {
-    loginRequest(values.username, values.password)
+    loginRequest(values.login, values.password)
       .then(response => {
-        store.dispatch(loginUser(JSON.parse(response.config.data).username));
+        store.dispatch(loginUser(response.data));
+        localStorage.setItem('credentials', JSON.stringify(response.data));
         history.push("/");
       })
       .catch(() => setSuccesLogin(false));
@@ -53,7 +54,7 @@ const Login = () => {
           }
           <Col span={24}>
             <Form layout="vertical" name="authentication" onFinish={onFinish}  validateMessages={validateMessages}>
-              <Form.Item name="username" label="Username" rules={[{ required: true }]}>
+              <Form.Item name="login" label="Username" rules={[{ required: true }]}>
                 <Input ></Input>
               </Form.Item>
               <Form.Item name="password" label="Senha" rules={[{ required: true }]}>

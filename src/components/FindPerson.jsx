@@ -1,40 +1,80 @@
 import React, { useState } from 'react'
-import { Form, Input, Card, Row, Button, Radio } from 'antd';
+import { Form, Input, Row, Button, Radio, Table } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-import {searchUserByName, searchUserById, searchAllUsers, searchClientByName, searchClientById, searchAllClients} from '../services/search'
+import { searchUserByName, searchUserById, searchAllUsers, searchClientByName, searchClientById, searchAllClients } from '../services/search'
 
 const FindPerson = (props) => {
   const [find, setFind] = useState('all');
   const [persons, setPersons] = useState(null);
   const [firstRender, setFirstRender] = useState(true);
   const isUser = props.name.includes('Usuário');
+  const columns = [
+    {
+      title: "Id",
+      dataIndex: "id",
+      key: "id"
+    },
+    {
+      title: "Name",
+      dataIndex: "fullName",
+      key: "fullName"
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email"
+    },
+    {
+      title: "Age",
+      dataIndex: "age",
+      key: "age"
+    },
+    // {
+    //   title: "Address",
+    //   dataIndex: "Address",
+    //   key: "address"
+    // },
+  ]
 
   const validateMessages = {
     required: '${label} é obrigatório!'
   }
 
   const handleSearchUser = async (value) => {
-    if(value.name) {
-      await searchUserByName(value.name).then(response => setPersons(response.length > 0 ? response : undefined));
-    } else if(value.id) {
-      await searchUserById(value.id).then(response => setPersons(response.length > 0 ? response : undefined));
+    if (value.name) {
+      await searchUserByName(value.name)
+        .then(response => response.data)
+        .then(data => setPersons(data.length > 0 ? data.map((person, index) => {return { ...person, key: index } }) : undefined));
+    } else if (value.id) {
+      await searchUserById(value.id)
+        .then(response => response.data)
+        .then(data => setPersons(data ? [data].map((person, index) => {return { ...person, key: index } }) : undefined));
     } else {
-      await searchAllUsers().then(response => setPersons(response.length > 0 ? response : undefined));
+      await searchAllUsers()
+        .then(response => {
+          return response.data})
+        .then(data => setPersons(data.length > 0 ? data.map((person, index) => {return { ...person, key: index } }) : undefined));
     }
     setFirstRender(false);
   }
 
   const handleSearchClient = async (value) => {
-    if(value.name) {
-      await searchClientByName(value.name).then(response => setPersons(response.length > 0 ? response : undefined));
-    } else if(value.id) {
-      await searchClientById(value.id).then(response => setPersons(response.length > 0 ? response : undefined));
+    if (value.name) {
+      await searchClientByName(value.name)
+        .then(response => response.data)
+        .then(data => setPersons(data.length > 0 ? data.map((person, index) => {return { ...person, key: index } }) : undefined));
+    } else if (value.id) {
+      await searchClientById(value.id)
+        .then(response => response.data)
+        .then(data => setPersons(data ? [data].map((person, index) => {return { ...person, key: index } }) : undefined));
     } else {
-      await searchAllClients().then(response => setPersons(response.length > 0 ? response : undefined));
+      await searchAllClients()
+        .then(response => response.data)
+        .then(data => setPersons(data.length > 0 ? data.map((person, index) => {return { ...person, key: index } }) : undefined));
     }
     setFirstRender(false);
   }
-  
+
   return (
     <div>
       <Row>
@@ -47,42 +87,30 @@ const FindPerson = (props) => {
           <Radio.Button onClick={() => setFind('byId')} value="byId">Procurar por id</Radio.Button>
         </Radio.Group>
       </Row>
-        <Row>
-          <Form onFinish={isUser ? handleSearchUser : handleSearchClient} validateMessages={validateMessages}>
-            { find === 'byName' &&
-              <Form.Item name="name">
-                <Input placeholder="Nome" style={{margin: '10px 0px 0px 0px'}} rules={[{ required: true }]}/>
-              </Form.Item>
-            }
-            { find === 'byId' &&
-              <Form.Item name="id">
-                <Input type="number" placeholder="Id" style={{margin: '10px 0px 0px 0px'}} rules={[{ required: true }]}/>
-              </Form.Item>
-            }
-            <Form.Item>
-              <Button style={{margin: '10px 0px 0px 0px'}} type="primary" icon={<SearchOutlined />} htmlType="submit">
-                Procurar
-              </Button>
+      <Row>
+        <Form onFinish={isUser ? handleSearchUser : handleSearchClient} validateMessages={validateMessages}>
+          {find === 'byName' &&
+            <Form.Item name="name">
+              <Input placeholder="Nome" style={{ margin: '10px 0px 0px 0px' }} rules={[{ required: true }]} />
             </Form.Item>
-          </Form>
-        </Row>
-        <Row>
-          { persons &&
-            persons.map((person) => {
-              return(
-                <Card size="small" style={{width: 300,margin: '10px', textAlign: 'center'}} key={person.id}>
-                  <p><b>Id: </b>{person.id}</p>
-                  <p><b>Nome: </b>{person.fullName}</p>
-                  <p><b>Email: </b>{person.email}</p>
-                  <p><b>Idade: </b>{person.age}</p>
-                </Card>
-              )
-            })
           }
-          { !firstRender && !persons &&
-            <h2>Nenhum Usuário encontrado!</h2>
+          {find === 'byId' &&
+            <Form.Item name="id">
+              <Input type="number" placeholder="Id" style={{ margin: '10px 0px 0px 0px' }} rules={[{ required: true }]} />
+            </Form.Item>
           }
-        </Row>
+          <Form.Item>
+            <Button style={{ margin: '10px 0px 0px 0px' }} type="primary" icon={<SearchOutlined />} htmlType="submit">
+              Procurar
+              </Button>
+          </Form.Item>
+        </Form>
+      </Row>
+      <Row>
+        { !firstRender && 
+          <Table style={{width: '100%'}} colSpan={16} dataSource={persons} columns={columns} />
+        }
+      </Row>
     </div>
   )
 }

@@ -9,7 +9,7 @@ const DeleteUser = () => {
   const handleDelete = (id) => {
     delUser(id)
       .then(response => {
-        setdeletedSuccessfully(response.message);
+        setdeletedSuccessfully(response.data.message);
       })
       .catch(err => {
         console.log(err)
