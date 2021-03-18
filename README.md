@@ -1,7 +1,7 @@
 # Teste Crud
 
 ## Objetivos
-  - Criar um SPA para consumir as API's
+  - Criar um SPA para consumir as API's do projeto crudBack
   
 ## Instruções para rodar
   - Rodar o comando npm install
