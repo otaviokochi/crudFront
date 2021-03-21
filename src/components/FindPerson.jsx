@@ -15,7 +15,7 @@ const FindPerson = (props) => {
       key: "id"
     },
     {
-      title: "Name",
+      title: "Nome",
       dataIndex: "fullName",
       key: "fullName"
     },
@@ -25,7 +25,7 @@ const FindPerson = (props) => {
       key: "email"
     },
     {
-      title: "Age",
+      title: "Idade",
       dataIndex: "age",
       key: "age"
     },
