@@ -1,4 +1,4 @@
-# Teste Crud
+# Crud de usuários (acesso ao sistema) e clientes (sem acesso ao sistema)
 
 ## Objetivos
   - Criar um SPA para consumir as API's do projeto crudBack
