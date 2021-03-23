@@ -1,4 +1,5 @@
-# Crud de usuários (acesso ao sistema) e clientes (sem acesso ao sistema)
+# Crud de usuários e clientes 
+> usuários possuem acesso ao sistema (admin), clientes não
 
 ## Objetivos
   - Criar um SPA para consumir as API's do projeto crudBack
