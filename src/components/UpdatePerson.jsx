@@ -27,10 +27,12 @@ const UpdatePerson = (props) => {
             setIdPerson(id);
           }
           else {
+            setPersonData(false);
             setFindPerson(false);
           }
         })
         .catch(err => {
+          setPersonData(false);
           setFindPerson(false);
           console.log(err);
         });
