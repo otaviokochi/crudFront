@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const loginRequest = async (login, password) => {
   const url = 'http://localhost:5000/signin';
-  const res = await axios({
+  return await axios({
     method: 'POST',
     url: url,
     data: {
@@ -10,7 +10,6 @@ const loginRequest = async (login, password) => {
       password
     }
   })
-  return res;
 }
 
 export default loginRequest;

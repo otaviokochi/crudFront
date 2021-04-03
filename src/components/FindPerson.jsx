@@ -29,11 +29,6 @@ const FindPerson = (props) => {
       dataIndex: "age",
       key: "age"
     },
-    // {
-    //   title: "Address",
-    //   dataIndex: "Address",
-    //   key: "address"
-    // },
   ]
 
   const validateMessages = {

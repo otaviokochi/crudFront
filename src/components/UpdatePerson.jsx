@@ -46,17 +46,20 @@ const UpdatePerson = (props) => {
         .then(response => {
           if (response.data) {
             setPersonData(response.data)
+            setFindPerson(true)
             setIdPerson(id);
           } else {
+            setPersonData(false);
+            setFindPerson(false);
           }
-          setFirstRender(false);
         })
         .catch(err => {
+          setPersonData(false);
           setFindPerson(false);
           console.log(err);
         });
       setFirstRender(false);
-      }
+    }
   }
 
   const onFinishUser = (values) => {
