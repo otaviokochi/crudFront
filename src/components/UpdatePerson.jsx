@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Input, Button } from 'antd';
 import { searchClientById, searchUserById } from '../services/search';
 import { updateUser, updateClient } from '../services/update'
@@ -17,6 +17,16 @@ const UpdatePerson = (props) => {
     wrapperCol: { span: 16 },
   };
 
+  useEffect(() => {
+    form.setFieldsValue({
+      name: personData.fullName,
+      email: personData.email,
+      address: personData.address,
+      age: personData.age,
+      cpf: personData.cpf
+    })
+  }, [personData])
+  
   const searchUser = async (id) => {
     if (id) {
       await searchUserById(id)
@@ -97,16 +107,8 @@ const UpdatePerson = (props) => {
         <Search type="number" placeholder="Id do cliente a ser alterado!" enterButton="Alterar" allowClear onSearch={searchClient} />
       }
       { personData &&
-        <Form style={{ margin: '20px 0px' }} {...layout} form={form} name="create" onFinish={isUser ? onFinishUser : onFinishClient}
-          initialValues={{
-            name: personData.fullName,
-            email: personData.email,
-            age: personData.age,
-            address: personData.address,
-            cpf: personData.cpf
-          }}
-        >
-          <Form.Item name="name" label="Nome" rules={[{ required: true }]}>
+        <Form style={{ margin: '20px 0px' }} {...layout} form={form} name="create" onFinish={isUser ? onFinishUser : onFinishClient}>
+          <Form.Item name="name" label="Nome" rules={[{ required: true }]} >
             <Input />
           </Form.Item>
           <Form.Item name="email" label="Email" rules={[{ required: true }]}>
@@ -133,7 +135,7 @@ const UpdatePerson = (props) => {
           {isUser ? 'Usuário' : 'Cliente  '} não encontrado!
         </h2>
       }
-      { !personData && !firstRender &&
+      { !personData && !firstRender && findPerson &&
         <h2 style={{ margin: '20px 0px' }}>
           {updatedSuccessfully}
         </h2>

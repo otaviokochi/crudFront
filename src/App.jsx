@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd'
-import Login from './views/login/login'
-import store from './redux/auth'
+import Login from './views/login/Login'
+import store, { loginUser } from './redux/auth';
+import { useHistory } from 'react-router-dom';
 
 import Content from './components/layout/Content';
 import MenuHeader from './components/layout/MenuHeader'
@@ -13,7 +14,16 @@ import './App.css'
 const App = () => {
   const { Header } = Layout 
   const { loggedIn } = store.getState();
+  const history = useHistory();
 
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('credentials'));
+    if(user) {
+      store.dispatch(loginUser(user))
+      console.log(history)
+    }
+  }, [history])
+  
   return (
     <Router>
       <Switch>

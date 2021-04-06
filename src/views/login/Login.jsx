@@ -4,6 +4,7 @@ import loginRequest from '../../services/login'
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { useHistory } from 'react-router-dom';
 import store, { loginUser } from '../../redux/auth';
+import './Login.css';
 
 const Login = () => {
   const history = useHistory();
@@ -25,27 +26,25 @@ const Login = () => {
   }
   
   return (
-    <Row style={{position: 'absolute', left: '40%', top: '30%'}} align='middle'>
-      <Card   headStyle={{
-                borderColor: '#03a9f4'
-              }}
-              style={{
-                borderColor: '#03a9f4',
-                width: 310,
-              }}
-              title={
-                <Typography.Title
-                  level={3}
-                  style={{
-                    width: '100%',
-                    textAlign: 'center',
-                    color: '#03a9f4'
-                  }}>
-                  Autenticação Crud
-                </Typography.Title>
-              }
+    <Row className='loginRow' align='middle'>
+      <Card headStyle={{borderColor: '#03a9f4'}}
+            style={{
+              borderColor: '#03a9f4',
+              width: 310,
+            }}
+            title={
+              <Typography.Title
+                level={3}
+                style={{
+                  width: '100%',
+                  textAlign: 'center',
+                  color: '#03a9f4'
+                }}>
+                Autenticação Crud
+              </Typography.Title>
+            }
             size="large" 
-            style={{width: 300,margin: '10px', textAlign: 'center'}}>
+            style={{width: 300, margin: '10px', textAlign: 'center'}}>
         <Row>
           { !succesLogin &&
             <Col span={24}>

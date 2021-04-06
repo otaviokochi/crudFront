@@ -7,10 +7,6 @@ const create = async user => {
       method: 'POST',
       url: url,
       data: user,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-type': 'application/json'
-      }
     })
   } else {
     const url = ' http://localhost:5000/clients'
@@ -18,10 +14,6 @@ const create = async user => {
       method: 'POST',
       url: url,
       data: user,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-type': 'application/json'
-      }
     })
   }
 }
