@@ -31,10 +31,6 @@ const FindPerson = (props) => {
     },
   ]
 
-  const validateMessages = {
-    required: '${label} é obrigatório!'
-  }
-
   const handleSearchUser = async (value) => {
     if (value.name) {
       await searchUserByName(value.name)
@@ -83,15 +79,15 @@ const FindPerson = (props) => {
         </Radio.Group>
       </Row>
       <Row>
-        <Form onFinish={isUser ? handleSearchUser : handleSearchClient} validateMessages={validateMessages}>
+        <Form onFinish={isUser ? handleSearchUser : handleSearchClient}>
           {find === 'byName' &&
             <Form.Item name="name">
-              <Input placeholder="Nome" style={{ margin: '10px 0px 0px 0px' }} rules={[{ required: true }]} />
+              <Input placeholder="Nome" style={{ margin: '10px 0px 0px 0px' }}  />
             </Form.Item>
           }
           {find === 'byId' &&
             <Form.Item name="id">
-              <Input type="number" placeholder="Id" style={{ margin: '10px 0px 0px 0px' }} rules={[{ required: true }]} />
+              <Input type="number" placeholder="Id" style={{ margin: '10px 0px 0px 0px' }}  />
             </Form.Item>
           }
           <Form.Item>

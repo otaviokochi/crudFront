@@ -20,11 +20,6 @@ const Login = () => {
       .catch(() => setSuccesLogin(false));
   } 
 
-  
-  const validateMessages = {
-    required: '${label} é obrigatório!'
-  }
-  
   return (
     <Row className='loginRow' align='middle'>
       <Card headStyle={{borderColor: '#03a9f4'}}
@@ -44,7 +39,7 @@ const Login = () => {
               </Typography.Title>
             }
             size="large" 
-            style={{width: 300, margin: '10px', textAlign: 'center'}}>
+            >
         <Row>
           { !succesLogin &&
             <Col span={24}>
@@ -52,11 +47,11 @@ const Login = () => {
             </Col>
           }
           <Col span={24}>
-            <Form layout="vertical" name="authentication" onFinish={onFinish}  validateMessages={validateMessages}>
-              <Form.Item name="login" label="Username" rules={[{ required: true }]}>
+            <Form layout="vertical" name="authentication" onFinish={onFinish}>
+              <Form.Item name="login" label="Username" rules={[{ required: true, message: "Informe o username" }]}>
                 <Input ></Input>
               </Form.Item>
-              <Form.Item name="password" label="Senha" rules={[{ required: true }]}>
+              <Form.Item name="password" label="Senha" rules={[{ required: true, message: "Informe a senha"  }]}>
                 <Input.Password
                     iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}/>
               </Form.Item>

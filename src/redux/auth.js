@@ -4,7 +4,7 @@ import axios from 'axios';
 export const login = createSlice({
   name: 'login',
   initialState: {
-    loggedIn: false,
+    loggedIn: JSON.parse(localStorage.getItem('credentials')) ? JSON.parse(localStorage.getItem('credentials')).login : null,
   },
   reducers: {
     loginUser: (state, action) => {
@@ -13,6 +13,7 @@ export const login = createSlice({
     },
     logoffUser: state => {
       delete axios.defaults.headers.common['Authorization'];
+      localStorage.clear();
       state.loggedIn = false;
     },
   }

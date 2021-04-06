@@ -25,7 +25,7 @@ const UpdatePerson = (props) => {
       age: personData.age,
       cpf: personData.cpf
     })
-  }, [personData])
+  }, [personData, form])
   
   const searchUser = async (id) => {
     if (id) {
@@ -108,19 +108,19 @@ const UpdatePerson = (props) => {
       }
       { personData &&
         <Form style={{ margin: '20px 0px' }} {...layout} form={form} name="create" onFinish={isUser ? onFinishUser : onFinishClient}>
-          <Form.Item name="name" label="Nome" rules={[{ required: true }]} >
+          <Form.Item name="name" label="Nome" rules={[{ required: true, message: 'Nome é obrigatório' }]} >
             <Input />
           </Form.Item>
-          <Form.Item name="email" label="Email" rules={[{ required: true }]}>
+          <Form.Item name="email" label="Email" rules={[{ required: true, message: 'Email é obrigatório' }]}>
             <Input type="email" />
           </Form.Item>
-          <Form.Item name="age" label="Idade" rules={[{ required: true }]}>
+          <Form.Item name="age" label="Idade" rules={[{ required: true, message: 'Idade é obrigatório' }]}>
             <Input type="number" />
           </Form.Item>
-          <Form.Item name="address" label="Endereço" rules={[{ required: true }]}>
+          <Form.Item name="address" label="Endereço" rules={[{ required: true, message: 'Endereço é obrigatório' }]}>
             <Input />
           </Form.Item>
-          <Form.Item name="cpf" label="Cpf" rules={[{ required: true }]}>
+          <Form.Item name="cpf" label="Cpf" rules={[{ required: true, message: 'Cpf é obrigatório' }]}>
             <Input />
           </Form.Item>
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 2 }}>

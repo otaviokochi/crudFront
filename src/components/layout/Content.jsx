@@ -12,6 +12,7 @@ import DeleteClient from '../../views/client/DeleteClient'
 import SearchClient from '../../views/client/SearchClient' 
 import CreateClient from '../../views/client/CreateClient'
 
+import './Content.css'
 
 const Content = () => {
   const { Content } = Layout 

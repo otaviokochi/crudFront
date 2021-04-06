@@ -3,27 +3,21 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import { Layout } from 'antd'
 import Login from './views/login/Login'
 import store, { loginUser } from './redux/auth';
-import { useHistory } from 'react-router-dom';
 
 import Content from './components/layout/Content';
 import MenuHeader from './components/layout/MenuHeader'
 import SideBar from './components/layout/SideBar'
 
-import './App.css'
 
 const App = () => {
   const { Header } = Layout 
   const { loggedIn } = store.getState();
-  const history = useHistory();
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('credentials'));
-    if(user) {
-      store.dispatch(loginUser(user))
-      console.log(history)
-    }
-  }, [history])
-  
+    if(user) store.dispatch(loginUser(user));
+  }, [])
+
   return (
     <Router>
       <Switch>
