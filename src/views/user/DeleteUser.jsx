@@ -5,6 +5,7 @@ import {delUser} from '../../services/delete'
 const DeleteUser = () => {
   const { Search } = Input;
   const [deletedSuccessfully, setdeletedSuccessfully] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   
   const handleDelete = (id) => {
     delUser(id)
@@ -12,7 +13,8 @@ const DeleteUser = () => {
         setdeletedSuccessfully(response.data.message);
       })
       .catch(err => {
-        console.log(err)
+        setErrorMessage(err.response.data.message);
+        setdeletedSuccessfully(false);
       })
   }
 
@@ -20,7 +22,7 @@ const DeleteUser = () => {
     <div>
       <h2>Deletar Usuário</h2>
       <Search type="number" placeholder="Id do usuário a ser deletado!" enterButton="Deletar" allowClear onSearch={handleDelete}/>
-      <h2>{deletedSuccessfully}</h2>
+      <h2>{deletedSuccessfully ? deletedSuccessfully : errorMessage}</h2>
     </div>
   )
 }

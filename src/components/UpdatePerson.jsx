@@ -23,7 +23,6 @@ const UpdatePerson = (props) => {
       email: personData.email,
       address: personData.address,
       age: personData.age,
-      cpf: personData.cpf
     })
   }, [personData, form])
   
@@ -118,9 +117,6 @@ const UpdatePerson = (props) => {
             <Input type="number" />
           </Form.Item>
           <Form.Item name="address" label="Endereço" rules={[{ required: true, message: 'Endereço é obrigatório' }]}>
-            <Input />
-          </Form.Item>
-          <Form.Item name="cpf" label="Cpf" rules={[{ required: true, message: 'Cpf é obrigatório' }]}>
             <Input />
           </Form.Item>
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 2 }}>

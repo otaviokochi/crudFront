@@ -4,7 +4,8 @@ import {delClient} from '../../services/delete'
 
 const DeleteClient = () => {
   const { Search } = Input;
-  const [deletedSuccessfully, setdeletedSuccessfully] = useState(false);
+  const [deletedSuccessfully, setdeletedSuccessfully] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleDelete = (id) => {
     delClient(id)
@@ -12,7 +13,8 @@ const DeleteClient = () => {
         setdeletedSuccessfully(response.data.message);
       })
       .catch(err => {
-        console.log(err)
+        setErrorMessage(err.response.data.message);
+        setdeletedSuccessfully(false);
       })
   }
 
@@ -20,7 +22,7 @@ const DeleteClient = () => {
     <div>
       <h2>Deletar Cliente</h2>
       <Search type="number" placeholder="Id do cliente a ser deletado!" enterButton="Deletar" allowClear onSearch={handleDelete}/>
-      <h2>{deletedSuccessfully}</h2>
+      <h2>{deletedSuccessfully ? deletedSuccessfully : errorMessage}</h2>
     </div>
   )
 }

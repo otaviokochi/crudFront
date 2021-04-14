@@ -1,9 +1,9 @@
 import React from 'react'
-import FindPerson from '../../components/FindPerson'
+import SeachPerson from '../../components/SearchPerson'
 
 const SearchUser = () => {
   return (
-    <FindPerson name="Procurar Usuário" />
+    <SeachPerson name="Procurar Usuário" />
   )
 }
 

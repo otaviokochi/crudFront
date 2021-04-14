@@ -3,7 +3,7 @@ import { Form, Input, Row, Button, Radio, Table } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { searchUserByName, searchUserById, searchAllUsers, searchClientByName, searchClientById, searchAllClients } from '../services/search'
 
-const FindPerson = (props) => {
+const SeachPerson = (props) => {
   const [find, setFind] = useState('all');
   const [persons, setPersons] = useState(null);
   const [firstRender, setFirstRender] = useState(true);
@@ -81,13 +81,13 @@ const FindPerson = (props) => {
       <Row>
         <Form onFinish={isUser ? handleSearchUser : handleSearchClient}>
           {find === 'byName' &&
-            <Form.Item name="name">
-              <Input placeholder="Nome" style={{ margin: '10px 0px 0px 0px' }}  />
+            <Form.Item name="name" style={{ margin: '10px 0px 0px 0px' }}>
+              <Input placeholder="Nome" />
             </Form.Item>
           }
           {find === 'byId' &&
-            <Form.Item name="id">
-              <Input type="number" placeholder="Id" style={{ margin: '10px 0px 0px 0px' }}  />
+            <Form.Item name="id" style={{ margin: '10px 0px 0px 0px' }}>
+              <Input type="number" placeholder="Id"   />
             </Form.Item>
           }
           <Form.Item>
@@ -106,4 +106,4 @@ const FindPerson = (props) => {
   )
 }
 
-export default FindPerson;
+export default SeachPerson;
