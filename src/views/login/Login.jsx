@@ -22,9 +22,9 @@ const Login = () => {
 
   return (
     <Row className='loginRow' align='middle'>
-      <Card headStyle={{borderColor: '#03a9f4'}}
+      <Card headStyle={{borderColor: "rgba(120, 120, 120)"}}
             style={{
-              borderColor: '#03a9f4',
+              borderColor: "rgba(120, 120, 120)",
               width: 310,
             }}
             title={
@@ -33,7 +33,7 @@ const Login = () => {
                 style={{
                   width: '100%',
                   textAlign: 'center',
-                  color: '#03a9f4'
+                  color: '#000'
                 }}>
                 Autenticação Crud
               </Typography.Title>
@@ -49,10 +49,10 @@ const Login = () => {
           <Col span={24}>
             <Form layout="vertical" name="authentication" onFinish={onFinish}>
               <Form.Item name="login" label="Username" rules={[{ required: true, message: "Informe o username" }]}>
-                <Input ></Input>
+                <Input style={{outline: "none"}}></Input>
               </Form.Item>
               <Form.Item name="password" label="Senha" rules={[{ required: true, message: "Informe a senha"  }]}>
-                <Input.Password
+                <Input.Password style={{outline: "none"}}
                     iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}/>
               </Form.Item>
               <Form.Item>

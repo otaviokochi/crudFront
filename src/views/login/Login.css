@@ -5,3 +5,11 @@
   align-self: center; 
   justify-content: center;
 }
+
+.headStyle {
+  background-image: linear-gradient(to right,
+    rgba(120, 120, 120, 0),
+    rgba(120, 120, 120, 0.75),
+    rgba(120, 120, 120, 0),
+  );
+}
